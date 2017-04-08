@@ -4,11 +4,12 @@ printing = []
 absolute = True
 
 class Line(object):
-    def __init__(self,x0,y0,z0,x1,y1,z1,e,f):
+    def __init__(self,x0,y0,z0,x1,y1,z1,e,f,t):
         self.start = (x0,y0,z0)
         self.end = (x1,y1,z1)
         self.extrude = e
         self.feed = f
+        self.type = t
     def to_gcode(self):
         result = ""
         #TODO
@@ -47,7 +48,7 @@ def parseg(line):
             f = value
         else:
             assert False
-    return Line(x0,y0,z0,x1,y1,z1,e,f)
+    return Line(x0,y0,z0,x1,y1,z1,e,f,number)
 
 while True:
     try:
