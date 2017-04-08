@@ -9,9 +9,16 @@ class Line(object):
         self.end = (x1,y1,z1)
         self.extrude = e
         self.feed = f
+    def to_gcode(self):
+        result = ""
+        #TODO
 
 def parseg(line):
     #G1 X91.406 Y157.951 E0.10057
+    values = line.split()
+    assert values[0][0] == "G"
+    number = int(values.pop(0)[1:])
+    assert number in [0,1]
     x0 = state["x"]
     y0 = state["y"]
     z0 = state["z"]
@@ -20,7 +27,7 @@ def parseg(line):
     z1 = z0
     e = 0
     f = None
-    values = line.split()[1:]
+
     while values:
         value = values.pop(0)
         try:
